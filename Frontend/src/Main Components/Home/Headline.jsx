@@ -36,13 +36,18 @@ const Headline = () => {
                 </Button>
             </div>
 
-            {/* How It Works Section */}
-            <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center mt-12 px-4">
+            {/* How It Works Heading */}
+            <div className="text-center mt-8 mb-4">
+                <h2 className="text-2xl font-semibold text-foreground">How It Works</h2>
+            </div>
+
+            {/* How It Works Steps */}
+            <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center mt-6 px-4">
                 {/* Step 1 */}
                 <Card className="hover:shadow-xl transition">
                     <CardContent className="py-10">
                         <User className="mx-auto h-10 w-10 text-primary mb-4" />
-                        <h3 className="text-xl font-semibold mb-2">Register as Student</h3>
+                        <h3 className="text-xl font-semibold mb-2">1. Register as Student</h3>
                         <p className="text-muted-foreground text-sm">
                             Sign up and verify your student details
                         </p>
@@ -53,7 +58,7 @@ const Headline = () => {
                 <Card className="hover:shadow-xl transition">
                     <CardContent className="py-10">
                         <Building2 className="mx-auto h-10 w-10 text-primary mb-4" />
-                        <h3 className="text-xl font-semibold mb-2">Choose Coaching</h3>
+                        <h3 className="text-xl font-semibold mb-2">2. Choose Coaching</h3>
                         <p className="text-muted-foreground text-sm">
                             Select the institute you want to visit
                         </p>
@@ -64,7 +69,7 @@ const Headline = () => {
                 <Card className="hover:shadow-xl transition">
                     <CardContent className="py-10">
                         <Car className="mx-auto h-10 w-10 text-primary mb-4" />
-                        <h3 className="text-xl font-semibold mb-2">Get Free Cab</h3>
+                        <h3 className="text-xl font-semibold mb-2">3. Get Free Cab</h3>
                         <p className="text-muted-foreground text-sm">
                             We send a cab to your location, no payment needed
                         </p>
