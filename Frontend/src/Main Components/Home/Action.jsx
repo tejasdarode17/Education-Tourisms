@@ -31,14 +31,14 @@ const Action = () => {
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button 
+            {/* <Button 
               size="lg" 
               variant="outline" 
               className="text-lg border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary group"
             >
               <Download className="mr-2 h-5 w-5" />
               Download App
-            </Button>
+            </Button> */}
           </div>
 
           <div className="mt-8 text-primary-foreground/80 text-sm">
