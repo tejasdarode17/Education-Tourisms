@@ -9,7 +9,7 @@ const CoachingCentersList = () => {
   const coachingCenters = [
     {
       id: 1,
-      name: 'Allen Career Institute',
+      name: 'x',
       city: 'Kota',
       address: 'Road No. 1, IPIA, Kota, Rajasthan',
       rating: 4.8,
@@ -19,7 +19,7 @@ const CoachingCentersList = () => {
     },
     {
       id: 2,
-      name: 'FIITJEE',
+      name: 'x',
       city: 'Delhi',
       address: 'Punjabi Bagh, New Delhi',
       rating: 4.7,
@@ -29,7 +29,7 @@ const CoachingCentersList = () => {
     },
     {
       id: 3,
-      name: 'Resonance',
+      name: 'x',
       city: 'Kota',
       address: 'Commerce College Road, Kota, Rajasthan',
       rating: 4.9,
@@ -39,7 +39,7 @@ const CoachingCentersList = () => {
     },
     {
       id: 4,
-      name: 'Aakash Institute',
+      name: 'x',
       city: 'Mumbai',
       address: 'Andheri West, Mumbai, Maharashtra',
       rating: 4.6,
@@ -49,7 +49,7 @@ const CoachingCentersList = () => {
     },
     {
       id: 5,
-      name: 'BYJU\'S Classes',
+      name: 'x',
       city: 'Bangalore',
       address: 'Koramangala, Bangalore, Karnataka',
       rating: 4.5,
@@ -59,7 +59,7 @@ const CoachingCentersList = () => {
     },
     {
       id: 6,
-      name: 'Narayana IIT Academy',
+      name: 'x',
       city: 'Hyderabad',
       address: 'Ameerpet, Hyderabad, Telangana',
       rating: 4.4,
