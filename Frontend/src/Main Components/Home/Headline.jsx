@@ -10,7 +10,7 @@ const Headline = () => {
             <div className="max-w-3xl mx-auto text-center">
                 {/* Logo & Tagline */}
                 <div className="flex justify-center items-center mb-4">
-                    <img src="/logo.png" alt="EducationTourisms" className="h-8 mr-2" />
+                    <img src="/logo.jpg" alt="EducationTourisms" className="h-8 mr-2" />
                     <span className="font-semibold text-lg">EducationTourisms</span>
                 </div>
 

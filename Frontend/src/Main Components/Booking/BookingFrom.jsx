@@ -3,34 +3,36 @@ import { motion } from 'framer-motion';
 import { MapPin, Clock, User, Phone, Mail, Calendar, Car, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import axios from 'axios';
 
 
 export const BookingForm = () => {
     const [formData, setFormData] = useState({
-        name: '',
-        phone: '',
+        fullname: '',
+        phNumber: '',
         email: '',
         pickupLocation: '',
-        coachingCenter: '',
         date: '',
-        time: '',
-        returnTrip: true,
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleInputChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: type === 'checkbox' ? checked : value
-        }));
-    };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
 
-    };
+    async function handleSubmit(e) {
+
+        e.preventDefault()
+        try {
+            const response = await axios.post("http://localhost:3000/api/v1/student/form", formData, {
+                withCredentials: true
+            })
+            const data = response.data
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
     return (
         <motion.div
@@ -58,7 +60,7 @@ export const BookingForm = () => {
                                     name="name"
                                     placeholder="Full Name"
                                     value={formData.name}
-                                    onChange={handleInputChange}
+                                    onChange={(e) => { setFormData((prev) => ({ ...prev, fullname: e.target.value })) }}
                                     required
                                     className="w-full pl-10 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background"
                                 />
@@ -71,7 +73,7 @@ export const BookingForm = () => {
                                     name="phone"
                                     placeholder="Phone Number"
                                     value={formData.phone}
-                                    onChange={handleInputChange}
+                                    onChange={(e) => { setFormData((prev) => ({ ...prev, phNumber: e.target.value })) }}
                                     required
                                     className="w-full pl-10 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background"
                                 />
@@ -84,7 +86,7 @@ export const BookingForm = () => {
                                     name="email"
                                     placeholder="Email Address"
                                     value={formData.email}
-                                    onChange={handleInputChange}
+                                    onChange={(e) => { setFormData((prev) => ({ ...prev, email: e.target.value })) }}
                                     required
                                     className="w-full pl-10 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background"
                                 />
@@ -102,13 +104,13 @@ export const BookingForm = () => {
                                     name="pickupLocation"
                                     placeholder="Pickup Location"
                                     value={formData.pickupLocation}
-                                    onChange={handleInputChange}
+                                    onChange={(e) => { setFormData((prev) => ({ ...prev, pickupLocation: e.target.value })) }}
                                     required
                                     className="w-full pl-10 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background"
                                 />
                             </div>
 
-                            <div className="relative">
+                            {/* <div className="relative">
                                 <MapPin className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
                                 <select
                                     name="coachingCenter"
@@ -124,7 +126,7 @@ export const BookingForm = () => {
                                     <option value="aakash-mumbai">Aakash Institute, Mumbai</option>
                                     <option value="byju-bangalore">BYJU'S Classes, Bangalore</option>
                                 </select>
-                            </div>
+                            </div> */}
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="relative">
@@ -133,14 +135,14 @@ export const BookingForm = () => {
                                         type="date"
                                         name="date"
                                         value={formData.date}
-                                        onChange={handleInputChange}
+                                        onChange={(e) => { setFormData((prev) => ({ ...prev, date: e.target.value })) }}
                                         required
                                         min={new Date().toISOString().split('T')[0]}
                                         className="w-full pl-10 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background"
                                     />
                                 </div>
 
-                                <div className="relative">
+                                {/* <div className="relative">
                                     <Clock className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
                                     <input
                                         type="time"
@@ -150,10 +152,10 @@ export const BookingForm = () => {
                                         required
                                         className="w-full pl-10 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background"
                                     />
-                                </div>
+                                </div> */}
                             </div>
 
-                            <div className="flex items-center space-x-2">
+                            {/* <div className="flex items-center space-x-2">
                                 <input
                                     type="checkbox"
                                     id="returnTrip"
@@ -165,7 +167,7 @@ export const BookingForm = () => {
                                 <label htmlFor="returnTrip" className="text-sm text-muted-foreground">
                                     Include return trip
                                 </label>
-                            </div>
+                            </div> */}
                         </div>
 
                         <Button

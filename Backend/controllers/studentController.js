@@ -6,6 +6,14 @@ export async function createStudentEntry(req, res) {
     try {
         const { fullname, phNumber, email, pickupLocation, date } = req.body
 
+        console.log(fullname);
+        console.log(phNumber);
+        console.log(email);
+        console.log(pickupLocation);
+        console.log(date);
+
+
+
         if (!fullname, !phNumber, !email, !pickupLocation, !date) {
             res.status(400).json({
                 success: false,
@@ -42,7 +50,7 @@ export async function createStudentEntry(req, res) {
             message: "Server Error"
         })
     }
-} 
+}
 
 
 
