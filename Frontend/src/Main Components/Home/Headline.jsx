@@ -19,10 +19,10 @@ const Headline = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="text-3xl md:text-4xl font-bold text-center text-foreground mb-4"
+                    className="text-3xl md:text-4xl font-bold text-center text-foreground mb-4 mt-5"
                 >
-                    पढ़ाई की राह, अब <br />
-                    मुफ्त सवारी के साथ
+                    Free Admission Guidance & <br />
+                    Travel Support for JEE/NEET Aspirants 🎓
                 </motion.h1>
 
                 {/* Subheading */}
@@ -32,7 +32,7 @@ const Headline = () => {
 
                 {/* CTA Button */}
                 <Button size="lg" asChild className="text-lg mb-12">
-                    <Link to="/book-ride">Book Your Free Ride</Link>
+                    <Link to="/book-ride">Book Your Free Ride 🚗 </Link>
                 </Button>
             </div>
 
