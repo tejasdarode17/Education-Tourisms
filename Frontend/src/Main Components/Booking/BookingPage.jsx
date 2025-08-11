@@ -16,7 +16,7 @@ const BookingPage = () => {
                         Book Your Free Ride
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                        Get safe, reliable, and completely free transportation to your coaching center
+                        Get safe, reliable, and completely free transportation to your coaching center for admmisson
                     </p>
                 </motion.div>
 

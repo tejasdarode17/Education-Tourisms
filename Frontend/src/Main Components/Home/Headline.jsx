@@ -9,25 +9,25 @@ const Headline = () => {
         <section className="bg-white dark:bg-background py-14 px-4 sm:px-6 md:px-8">
             <div className="max-w-3xl mx-auto text-center">
                 {/* Logo & Tagline */}
-                <div className="flex justify-center items-center mb-4 mt-5">
+                {/* <div className="flex justify-center items-center mb-4 mt-5">
                     <img src="/logo.jpg" alt="EducationTourisms" className="h-8 w-8 mr-2 object-contain" />
                     <span className="font-semibold text-base sm:text-lg">EducationTourisms</span>
-                </div>
+                </div> */}
 
                 {/* Main Heading */}
                 <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4 mt-5"
+                    className="text-xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4 mt-10"
                 >
-                    Free Admission Guidance & <br className="hidden sm:block" />
-                    Travel Support for JEE/NEET Aspirants 🎓
+                    Free Travelling for student & parents to explore and find the best coaching institues <br className="hidden sm:block" />
+                    for JEE/NEET Accross nagpur 🎓
                 </motion.h1>
 
                 {/* Subheading */}
-                <p className="text-muted-foreground mb-6 text-base sm:text-lg">
-                    We help students reach coaching centers with free cab rides.
+                <p className="text-muted-foreground mb-6 sm:text-sm text-sm">
+                    पढाई की राह, अब मुफ़्त की सवारी के साथ
                 </p>
 
                 {/* CTA Button */}
@@ -37,7 +37,7 @@ const Headline = () => {
             </div>
 
             {/* How It Works Heading */}
-            <div className="text-center mt-8 mb-4">
+            <div className="text-center  mb-4">
                 <h2 className="text-xl sm:text-2xl font-semibold text-foreground">How It Works</h2>
             </div>
 

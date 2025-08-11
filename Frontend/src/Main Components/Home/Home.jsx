@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div className='min-h-screen bg-background'>
       <Headline></Headline>
-      <Stats></Stats>
+      {/* <Stats></Stats> */}
       <Features></Features>
       <Reviews></Reviews>
       <Action></Action>

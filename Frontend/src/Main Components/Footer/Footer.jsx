@@ -17,7 +17,7 @@ const Footer = () => {
               <span className="text-xl font-bold text-foreground">EducationTourisms</span>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Empowering students with free, safe, and reliable transportation to coaching centers across India.
+              Empowering students with free, safe, and reliable transportation to coaching centers across Nagpur.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
@@ -75,15 +75,15 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center space-x-3 text-sm text-muted-foreground">
                 <Phone className="h-4 w-4 text-primary" />
-                <span>+91 9876543210</span>
+                <span>+91 7776877323</span>
               </li>
               <li className="flex items-center space-x-3 text-sm text-muted-foreground">
                 <Mail className="h-4 w-4 text-primary" />
-                <span>info@educationtourisms.com</span>
+                <span>admin@educationtourisms.com</span>
               </li>
               <li className="flex items-center space-x-3 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4 text-primary" />
-                <span>Mumbai, Maharashtra, India</span>
+                <span>Nagpur, Maharashtra, India</span>
               </li>
             </ul>
           </div>

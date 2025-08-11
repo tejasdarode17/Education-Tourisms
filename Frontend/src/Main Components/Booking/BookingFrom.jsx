@@ -231,8 +231,8 @@ export const BookingSteps = () => {
     const benefits = [
         '100% Free Service',
         'Background Verified Drivers',
-        'GPS Tracking',
-        'Insurance Coverage',
+        // 'GPS Tracking',
+        // 'Insurance Coverage',
         '24/7 Support',
         'Return Trip Included',
     ];
@@ -297,15 +297,15 @@ export const BookingSteps = () => {
 
             {/* Emergency Contact */}
             <Card className="bg-primary/5 border-primary/20">
-                <CardContent className="pt-6">
+                <CardContent className="">
                     <div className="text-center">
                         <h4 className="font-semibold text-foreground mb-2">Need Help?</h4>
                         <p className="text-sm text-muted-foreground mb-3">
                             Our support team is available 24/7
                         </p>
                         <div className="space-y-1 text-sm">
-                            <p className="text-primary font-medium">📞 +91 9876543210</p>
-                            <p className="text-primary font-medium">📧 support@educationtourisms.com</p>
+                            <p className="text-primary font-medium">📞 +91 7776877323</p>
+                            <p className="text-primary font-medium">📧 admin@educationtourisms.com</p>
                         </div>
                     </div>
                 </CardContent>

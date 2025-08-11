@@ -6,6 +6,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 const Features = () => {
   const features = [
     {
+      icon: Heart,
+      title: '100% Free',
+      description: 'No hidden costs, no fees - completely free for students',
+      color: 'text-red-600',
+      bgColor: 'bg-red-100 dark:bg-red-900/20',
+    },
+    {
       icon: MapPin,
       title: 'Wide Coverage',
       description: 'Serving 25+ cities with routes to all major coaching centers',
@@ -25,13 +32,6 @@ const Features = () => {
       description: 'Background-checked drivers, GPS tracking, and full insurance',
       color: 'text-purple-600',
       bgColor: 'bg-purple-100 dark:bg-purple-900/20',
-    },
-    {
-      icon: Heart,
-      title: '100% Free',
-      description: 'No hidden costs, no fees - completely free for students',
-      color: 'text-red-600',
-      bgColor: 'bg-red-100 dark:bg-red-900/20',
     },
     {
       icon: Users,
