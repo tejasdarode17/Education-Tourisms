@@ -1,50 +1,75 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Clock, User, Phone, Mail, Calendar, Car, CheckCircle, School2, Loader2 } from 'lucide-react';
+import { MapPin, Clock, User, Phone, Mail, Calendar, Car, CheckCircle, School2, Loader2, School, ChevronsUpDown, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import axios from 'axios';
 import { toast } from 'sonner';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
+import { cn } from '@/lib/utils';
 
 
 export const BookingForm = () => {
+
     const [formData, setFormData] = useState({
         fullName: '',
         phNumber: '',
         email: '',
         school: "",
+        coachings: [],
         pickupLocation: '',
         date: '',
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [open, setOpen] = useState(false);
+
+    const coachingOptions = [
+        "Sri Chaitanya Academy Nagpur",
+        "Aakash Institute Nagpur",
+        "NARAYANA IIT-JEE/NEET/FOUNDATION - Nagpur",
+        "Allen Career Institute Nagpur",
+        "Resonance Nagpur",
+        "IIT Point Nagpur",
+        "Others"
+    ];
 
     async function handleSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
         try {
-            setIsSubmitting(true)
+            setIsSubmitting(true);
             const response = await axios.post("http://localhost:3000/api/v1/student/form", formData, {
                 withCredentials: true
-            })
+            });
 
-            const data = response.data
+            const data = response.data;
             setFormData({
                 fullName: '',
                 phNumber: '',
                 email: '',
                 school: '',
+                coachings: [],
                 pickupLocation: '',
                 date: '',
             });
-            toast.success(data.message)
+            toast.success(data.message);
         } catch (error) {
             console.log(error);
-            toast.error(error?.response?.data?.message)
+            toast.error(error?.response?.data?.message);
         } finally {
-            setIsSubmitting(false)
+            setIsSubmitting(false);
         }
     }
 
+    function toggleCoaching(coaching) {
+        setFormData(prev => ({
+            ...prev,
+            coachings: prev.coachings.includes(coaching)
+                ? prev.coachings.filter(c => c !== coaching)
+                : [...prev.coachings, coaching]
+        }));
+    };
 
     return (
         <motion.div
@@ -115,6 +140,58 @@ export const BookingForm = () => {
                                     className="w-full pl-10 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background"
                                 />
                             </div>
+
+                            {/* multi select  */}
+                            <div className="relative">
+                                <Popover open={open} onOpenChange={setOpen}>
+                                    <PopoverTrigger asChild>
+                                        <Button
+                                            variant="outline"
+                                            role="combobox"
+                                            aria-expanded={open}
+                                            className="w-full pl-3 pr-4 py-3 flex justify-between items-center border border-input rounded-lg focus:ring-2 focus:ring-primary bg-background"
+                                        >
+                                            <div className="flex items-center gap-2">
+                                                <School className="h-5 w-5 text-muted-foreground" />
+                                                {formData.coachings.length > 0
+                                                    ? `${formData.coachings.length} selected`
+                                                    : "Select Coachings"}
+                                            </div>
+                                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                        </Button>
+                                    </PopoverTrigger>
+
+                                    <PopoverContent className="w-full p-0">
+                                        <Command>
+                                            <CommandInput placeholder="Search coaching..." />
+                                            <CommandList>
+                                                <CommandEmpty>No coaching found.</CommandEmpty>
+                                                <CommandGroup>
+                                                    {coachingOptions.map((coaching) => (
+                                                        <CommandItem
+                                                            key={coaching}
+                                                            onSelect={() => toggleCoaching(coaching)}
+                                                        >
+                                                            <div
+                                                                className={cn(
+                                                                    "mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
+                                                                    formData.coachings.includes(coaching)
+                                                                        ? "bg-primary text-primary-foreground"
+                                                                        : "opacity-50 [&_svg]:invisible"
+                                                                )}
+                                                            >
+                                                                <Check className="h-4 w-4" />
+                                                            </div>
+                                                            {coaching}
+                                                        </CommandItem>
+                                                    ))}
+                                                </CommandGroup>
+                                            </CommandList>
+                                        </Command>
+                                    </PopoverContent>
+                                </Popover>
+                            </div>
+
                         </div>
 
                         {/* Trip Details */}

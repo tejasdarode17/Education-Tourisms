@@ -30,6 +30,11 @@ const studentSchema = new mongoose.Schema({
         required: true,
     },
 
+    coachings: {
+        type: [String],
+        default: []
+    },
+
     pickupDates: [
         {
             date: { type: Date, required: true },

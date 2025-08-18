@@ -4,9 +4,9 @@ import Student from "../models/student.model.js"
 export async function createStudentEntry(req, res) {
 
     try {
-        const { fullName, phNumber, email, school, pickupLocation, date } = req.body
+        const { fullName, phNumber, email, coachings, school, pickupLocation, date } = req.body
 
-        if (!fullName, !phNumber, !school, !pickupLocation, !date) {
+        if (!fullName || !phNumber || !school || !coachings || !pickupLocation || !date) {
             return res.status(400).json({
                 success: false,
                 message: "Something is missing"
@@ -30,7 +30,8 @@ export async function createStudentEntry(req, res) {
             pickupLocation: pickupLocation,
             pickupDates: [
                 { date: new Date(date), status: "scheduled" }
-            ]
+            ],
+            coachings: coachings
         })
 
         res.status(200).json({
