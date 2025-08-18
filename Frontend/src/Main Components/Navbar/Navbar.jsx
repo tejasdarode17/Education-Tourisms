@@ -27,9 +27,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
             <div className="relative">
-              {/* <GraduationCap className="h-8 w-8 text-primary transition-transform group-hover:scale-110" /> */}
-              {/* <Car className="h-4 w-4 text-primary absolute -bottom-1 -right-1 opacity-80" /> */}
-              <img className='w-15' src="/logo.jpg" alt="" />
+              <img className='w-15' src="/logo_no_bg.png" alt="" />
             </div>
             <span className="text-xl font-bold text-foreground">EducationTourisms</span>
           </Link>

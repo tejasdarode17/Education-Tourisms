@@ -4,18 +4,10 @@ import Student from "../models/student.model.js"
 export async function createStudentEntry(req, res) {
 
     try {
-        const { fullname, phNumber, email, pickupLocation, date } = req.body
+        const { fullName, phNumber, email, school, pickupLocation, date } = req.body
 
-        console.log(fullname);
-        console.log(phNumber);
-        console.log(email);
-        console.log(pickupLocation);
-        console.log(date);
-
-
-
-        if (!fullname, !phNumber, !email, !pickupLocation, !date) {
-            res.status(400).json({
+        if (!fullName, !phNumber, !school, !pickupLocation, !date) {
+            return res.status(400).json({
                 success: false,
                 message: "Something is missing"
             })
@@ -26,21 +18,24 @@ export async function createStudentEntry(req, res) {
         if (existingStudent) {
             return res.status(409).json({
                 success: false,
-                message: 'you are already Registered',
+                message: 'You are already registered with us. Our team will contact you shortly.',
             });
         }
 
         const newStudent = await Student.create({
-            fullname: fullname,
+            fullName: fullName,
             email: email,
             phone: phNumber,
+            schoolName: school,
             pickupLocation: pickupLocation,
-            date: date
+            pickupDates: [
+                { date: new Date(date), status: "scheduled" }
+            ]
         })
 
         res.status(200).json({
             success: true,
-            message: "thanks for registring with us"
+            message: "Thank you for registering with us. Our team will reach out to you shortly"
         })
 
     } catch (error) {

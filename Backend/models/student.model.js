@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const studentSchema = new mongoose.Schema({
 
-    fullname: {
+    fullName: {
         type: String,
         required: true,
     },
@@ -10,14 +10,19 @@ const studentSchema = new mongoose.Schema({
     phone: {
         type: String,
         required: true,
+        unique: true,
         match: [/^(\+91|0)?[6-9][0-9]{9}$/, 'Invalid Indian phone number'],
     },
     email: {
         type: String,
         required: true,
-        unique: true,
         lowercase: true,
         match: [/.+@.+\..+/, "Please enter a valid email"],
+    },
+
+    schoolName: {
+        type: String,
+        required: true
     },
 
     pickupLocation: {
@@ -25,13 +30,18 @@ const studentSchema = new mongoose.Schema({
         required: true,
     },
 
-    date: {
-        type: Date,
-        required: true,
-    }
+    pickupDates: [
+        {
+            date: { type: Date, required: true },
+            status: {
+                type: String,
+                enum: ["scheduled", "confirmed", "rescheduled", "cancelled"],
+                default: "scheduled"
+            }
+        }
+    ]
 },
     { timestamps: true }
-
 )
 
 

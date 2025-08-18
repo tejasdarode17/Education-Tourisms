@@ -1,35 +1,47 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Clock, User, Phone, Mail, Calendar, Car, CheckCircle } from 'lucide-react';
+import { MapPin, Clock, User, Phone, Mail, Calendar, Car, CheckCircle, School2, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import axios from 'axios';
+import { toast } from 'sonner';
 
 
 export const BookingForm = () => {
     const [formData, setFormData] = useState({
-        fullname: '',
+        fullName: '',
         phNumber: '',
         email: '',
+        school: "",
         pickupLocation: '',
         date: '',
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-
-
     async function handleSubmit(e) {
-
         e.preventDefault()
         try {
+            setIsSubmitting(true)
             const response = await axios.post("http://localhost:3000/api/v1/student/form", formData, {
                 withCredentials: true
             })
+
             const data = response.data
-            console.log(data);
+            setFormData({
+                fullName: '',
+                phNumber: '',
+                email: '',
+                school: '',
+                pickupLocation: '',
+                date: '',
+            });
+            toast.success(data.message)
         } catch (error) {
             console.log(error);
+            toast.error(error?.response?.data?.message)
+        } finally {
+            setIsSubmitting(false)
         }
     }
 
@@ -59,8 +71,8 @@ export const BookingForm = () => {
                                     type="text"
                                     name="name"
                                     placeholder="Full Name"
-                                    value={formData.name}
-                                    onChange={(e) => { setFormData((prev) => ({ ...prev, fullname: e.target.value })) }}
+                                    value={formData.fullName}
+                                    onChange={(e) => { setFormData((prev) => ({ ...prev, fullName: e.target.value })) }}
                                     required
                                     className="w-full pl-10 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background"
                                 />
@@ -72,7 +84,7 @@ export const BookingForm = () => {
                                     type="tel"
                                     name="phone"
                                     placeholder="Phone Number"
-                                    value={formData.phone}
+                                    value={formData.phNumber}
                                     onChange={(e) => { setFormData((prev) => ({ ...prev, phNumber: e.target.value })) }}
                                     required
                                     className="w-full pl-10 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background"
@@ -87,6 +99,18 @@ export const BookingForm = () => {
                                     placeholder="Email Address"
                                     value={formData.email}
                                     onChange={(e) => { setFormData((prev) => ({ ...prev, email: e.target.value })) }}
+                                    className="w-full pl-10 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background"
+                                />
+                            </div>
+
+                            <div className="relative">
+                                <School2 className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
+                                <input
+                                    type="text"
+                                    name="text"
+                                    placeholder="School Name"
+                                    value={formData.school}
+                                    onChange={(e) => { setFormData((prev) => ({ ...prev, school: e.target.value })) }}
                                     required
                                     className="w-full pl-10 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background"
                                 />
@@ -110,24 +134,6 @@ export const BookingForm = () => {
                                 />
                             </div>
 
-                            {/* <div className="relative">
-                                <MapPin className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
-                                <select
-                                    name="coachingCenter"
-                                    value={formData.coachingCenter}
-                                    onChange={handleInputChange}
-                                    required
-                                    className="w-full pl-10 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background"
-                                >
-                                    <option value="">Select Coaching Center</option>
-                                    <option value="allen-kota">Allen Career Institute, Kota</option>
-                                    <option value="fiitjee-delhi">FIITJEE, Delhi</option>
-                                    <option value="resonance-kota">Resonance, Kota</option>
-                                    <option value="aakash-mumbai">Aakash Institute, Mumbai</option>
-                                    <option value="byju-bangalore">BYJU'S Classes, Bangalore</option>
-                                </select>
-                            </div> */}
-
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="relative">
                                     <Calendar className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
@@ -141,48 +147,17 @@ export const BookingForm = () => {
                                         className="w-full pl-10 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background"
                                     />
                                 </div>
-
-                                {/* <div className="relative">
-                                    <Clock className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
-                                    <input
-                                        type="time"
-                                        name="time"
-                                        value={formData.time}
-                                        onChange={handleInputChange}
-                                        required
-                                        className="w-full pl-10 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background"
-                                    />
-                                </div> */}
                             </div>
-
-                            {/* <div className="flex items-center space-x-2">
-                                <input
-                                    type="checkbox"
-                                    id="returnTrip"
-                                    name="returnTrip"
-                                    checked={formData.returnTrip}
-                                    onChange={handleInputChange}
-                                    className="w-4 h-4 text-primary bg-background border-input rounded focus:ring-primary"
-                                />
-                                <label htmlFor="returnTrip" className="text-sm text-muted-foreground">
-                                    Include return trip
-                                </label>
-                            </div> */}
                         </div>
 
                         <Button
                             type="submit"
-                            className="w-full py-3 text-lg"
+                            className="w-full py-3 text-lg cursor-pointer"
                             disabled={isSubmitting}
                         >
-                            {isSubmitting ? (
-                                <motion.div
-                                    animate={{ rotate: 360 }}
-                                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                                    className="w-5 h-5 border-2 border-primary-foreground border-t-transparent rounded-full mr-2"
-                                />
-                            ) : null}
-                            {isSubmitting ? 'Booking...' : 'Book Free Ride'}
+                            {
+                                isSubmitting ? <Loader2>Booking</Loader2> : "Book free Ride"
+                            }
                         </Button>
 
                         <p className="text-xs text-muted-foreground text-center">
@@ -231,8 +206,6 @@ export const BookingSteps = () => {
     const benefits = [
         '100% Free Service',
         'Background Verified Drivers',
-        // 'GPS Tracking',
-        // 'Insurance Coverage',
         '24/7 Support',
         'Return Trip Included',
     ];
