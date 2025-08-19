@@ -26,9 +26,9 @@ function MainLayout() {
 function AdminAuthLayout() {
   const { isAuthenticated } = useSelector((store) => store.auth);
 
-  if (isAuthenticated) {
-    return <Navigate to="/admin" replace />;
-  }
+  // if (isAuthenticated) {
+  //   return <Navigate to="/admin" replace />;
+  // }
 
   return <AdminLogin />;
 }
@@ -43,13 +43,13 @@ function AdminHomeLayout() {
     return <h1>Loading....</h1>
   }
 
-  if (!isAuthenticated) {
-    return <Navigate to="/admin-login" replace />;
-  }
+  // if (!isAuthenticated) {
+  //   return <Navigate to="/admin-login" replace />;
+  // }
 
   return (
     <div className="flex min-h-screen w-full">
-      
+
       <AdminSidebar />
 
       <div className="flex-1 p-4 lg:p-10 overflow-x-hidden bg-[#fff]">
