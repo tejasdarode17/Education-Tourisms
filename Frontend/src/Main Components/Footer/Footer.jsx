@@ -89,9 +89,20 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Bottom Section */}
         <div className="border-t border-border mt-12 pt-8 text-center">
           <p className="text-muted-foreground text-sm">
             &copy; 2024 EducationTourisms. All rights reserved. Empowering education through accessibility.
+          </p>
+
+          {/* Admin Login Link */}
+          <p className="mt-2">
+            <Link 
+              to="/admin-login" 
+              className="text-xs text-muted-foreground hover:text-primary transition-colors"
+            >
+              Admin Login
+            </Link>
           </p>
         </div>
       </div>

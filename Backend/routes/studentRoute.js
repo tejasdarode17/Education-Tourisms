@@ -6,5 +6,4 @@ const route = express.Router()
 
 route.post("/student/form", createStudentEntry)
 
-
 export default route

@@ -119,3 +119,10 @@
   }
 }
 
+.logo {
+  mix-blend-mode: multiply;
+}
+
+.pointer {
+  cursor: pointer;
+}

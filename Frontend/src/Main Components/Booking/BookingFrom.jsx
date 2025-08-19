@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { cn } from '@/lib/utils';
+import { Input } from '@/components/ui/input';
 
 
 export const BookingForm = () => {
@@ -22,18 +23,9 @@ export const BookingForm = () => {
         date: '',
     });
 
+    const [error, setError] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [open, setOpen] = useState(false);
 
-    const coachingOptions = [
-        "Sri Chaitanya Academy Nagpur",
-        "Aakash Institute Nagpur",
-        "NARAYANA IIT-JEE/NEET/FOUNDATION - Nagpur",
-        "Allen Career Institute Nagpur",
-        "Resonance Nagpur",
-        "IIT Point Nagpur",
-        "Others"
-    ];
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -56,20 +48,12 @@ export const BookingForm = () => {
             toast.success(data.message);
         } catch (error) {
             console.log(error);
-            toast.error(error?.response?.data?.message);
+            setError(error?.response?.data?.message)
         } finally {
             setIsSubmitting(false);
         }
     }
 
-    function toggleCoaching(coaching) {
-        setFormData(prev => ({
-            ...prev,
-            coachings: prev.coachings.includes(coaching)
-                ? prev.coachings.filter(c => c !== coaching)
-                : [...prev.coachings, coaching]
-        }));
-    };
 
     return (
         <motion.div
@@ -142,55 +126,8 @@ export const BookingForm = () => {
                             </div>
 
                             {/* multi select  */}
-                            <div className="relative">
-                                <Popover open={open} onOpenChange={setOpen}>
-                                    <PopoverTrigger asChild>
-                                        <Button
-                                            variant="outline"
-                                            role="combobox"
-                                            aria-expanded={open}
-                                            className="w-full pl-3 pr-4 py-3 flex justify-between items-center border border-input rounded-lg focus:ring-2 focus:ring-primary bg-background"
-                                        >
-                                            <div className="flex items-center gap-2">
-                                                <School className="h-5 w-5 text-muted-foreground" />
-                                                {formData.coachings.length > 0
-                                                    ? `${formData.coachings.length} selected`
-                                                    : "Select Coachings"}
-                                            </div>
-                                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                        </Button>
-                                    </PopoverTrigger>
+                            <MultiSelect formData={formData} setFormData={setFormData} ></MultiSelect>
 
-                                    <PopoverContent className="w-full p-0">
-                                        <Command>
-                                            <CommandInput placeholder="Search coaching..." />
-                                            <CommandList>
-                                                <CommandEmpty>No coaching found.</CommandEmpty>
-                                                <CommandGroup>
-                                                    {coachingOptions.map((coaching) => (
-                                                        <CommandItem
-                                                            key={coaching}
-                                                            onSelect={() => toggleCoaching(coaching)}
-                                                        >
-                                                            <div
-                                                                className={cn(
-                                                                    "mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
-                                                                    formData.coachings.includes(coaching)
-                                                                        ? "bg-primary text-primary-foreground"
-                                                                        : "opacity-50 [&_svg]:invisible"
-                                                                )}
-                                                            >
-                                                                <Check className="h-4 w-4" />
-                                                            </div>
-                                                            {coaching}
-                                                        </CommandItem>
-                                                    ))}
-                                                </CommandGroup>
-                                            </CommandList>
-                                        </Command>
-                                    </PopoverContent>
-                                </Popover>
-                            </div>
 
                         </div>
 
@@ -227,6 +164,13 @@ export const BookingForm = () => {
                             </div>
                         </div>
 
+                        {/* Error */}
+                        {error && (
+                            <p className="rounded bg-destructive/10 px-3 py-2 text-center text-sm text-destructive">
+                                {error}
+                            </p>
+                        )}
+
                         <Button
                             type="submit"
                             className="w-full py-3 text-lg cursor-pointer"
@@ -247,6 +191,110 @@ export const BookingForm = () => {
         </motion.div>
     );
 };
+
+
+
+
+const MultiSelect = ({ formData, setFormData }) => {
+
+    const [open, setOpen] = useState(false);
+    const [customCoaching, setCustomCoaching] = useState("");
+
+    const coachingOptions = [
+        "Sri Chaitanya Academy Nagpur",
+        "Aakash Institute Nagpur",
+        "NARAYANA IIT-JEE/NEET/FOUNDATION - Nagpur",
+        "Allen Career Institute Nagpur",
+        "Resonance Nagpur",
+        "IIT Point Nagpur",
+    ];
+
+
+    return (
+        <div className="relative">
+            <Popover open={open} onOpenChange={setOpen}>
+                <PopoverTrigger asChild>
+                    <Button
+                        variant="outline"
+                        role="combobox"
+                        aria-expanded={open}
+                        className="w-full pl-3 pr-4 py-3 flex justify-between items-center border border-input rounded-lg focus:ring-2 focus:ring-primary bg-background"
+                    >
+                        <div className="flex items-center gap-2">
+                            <School className="h-5 w-5 text-muted-foreground" />
+                            {formData.coachings.length > 0
+                                ? `${formData.coachings.length} selected`
+                                : "Select Coachings"}
+                        </div>
+                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                </PopoverTrigger>
+
+                <PopoverContent className="w-full p-0">
+                    <Command>
+                        <CommandInput placeholder="Search coaching..." />
+                        <CommandList>
+                            <CommandEmpty>No coaching found.</CommandEmpty>
+                            <CommandGroup>
+                                {coachingOptions.map((coaching) => (
+                                    <CommandItem
+                                        key={coaching}
+                                        onSelect={() => {
+                                            setFormData(prev => ({
+                                                ...prev,
+                                                coachings: prev.coachings.includes(coaching)
+                                                    ? prev.coachings.filter(c => c !== coaching)
+                                                    : [...prev.coachings, coaching]
+                                            }));
+                                        }}
+                                    >
+                                        <div
+                                            className={cn(
+                                                "mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
+                                                formData.coachings.includes(coaching)
+                                                    ? "bg-primary text-primary-foreground"
+                                                    : "opacity-50 [&_svg]:invisible"
+                                            )}
+                                        >
+                                            <Check className="h-4 w-4" />
+                                        </div>
+                                        {coaching}
+                                    </CommandItem>
+                                ))}
+
+                                {/* Custom Coaching Input */}
+                                <div className="p-2 flex gap-2">
+                                    <Input
+                                        placeholder="Add any other coaching"
+                                        value={customCoaching}
+                                        onChange={(e) => setCustomCoaching(e.target.value)}
+                                        className="w-full outline-none"
+                                    />
+                                    <Button
+                                        type="button"
+                                        onClick={() => {
+                                            const trimmed = customCoaching.trim();
+                                            if (trimmed && !formData.coachings.includes(trimmed)) {
+                                                setFormData(prev => ({
+                                                    ...prev,
+                                                    coachings: [...prev.coachings, trimmed]
+                                                }));
+                                            }
+                                            setCustomCoaching(""); // clear input
+                                        }}
+                                    >
+                                        Add
+                                    </Button>
+                                </div>
+                            </CommandGroup>
+                        </CommandList>
+                    </Command>
+                </PopoverContent>
+            </Popover>
+        </div>
+    )
+}
+
 
 export const BookingSteps = () => {
     const steps = [

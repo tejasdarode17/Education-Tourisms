@@ -3,6 +3,7 @@ import cors from "cors"
 import cookieParser from "cookie-parser"
 import dbConnect from "./config/dbConnect.js"
 import studentRoute from "./routes/studentRoute.js"
+import adminRoute from './routes/adminRoute.js'
 
 const app = express()
 const PORT = 3000
@@ -35,7 +36,7 @@ app.use(cookieParser());
 
 
 app.use("/api/v1", studentRoute)
-
+app.use("/api/v1", adminRoute)
 
 app.listen(PORT, () => {
     dbConnect()
