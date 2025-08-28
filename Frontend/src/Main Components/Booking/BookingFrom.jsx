@@ -402,8 +402,8 @@ export const BookingSteps = () => {
                             Our support team is available 24/7
                         </p>
                         <div className="space-y-1 text-sm">
-                            <p className="text-primary font-medium">📞 +91 7776877323</p>
-                            <p className="text-primary font-medium">📧 admin@educationtourisms.com</p>
+                            <p className="text-primary font-medium">📞 +91 7414977323</p>
+                            <p className="text-primary font-medium">📧  educationtourisms@gmail.com</p>
                         </div>
                     </div>
                 </CardContent>

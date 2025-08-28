@@ -75,11 +75,11 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center space-x-3 text-sm text-muted-foreground">
                 <Phone className="h-4 w-4 text-primary" />
-                <span>+91 7776877323</span>
+                <span>+91 7414977323</span>
               </li>
               <li className="flex items-center space-x-3 text-sm text-muted-foreground">
                 <Mail className="h-4 w-4 text-primary" />
-                <span>admin@educationtourisms.com</span>
+                <span> educationtourisms@gmail.com</span>
               </li>
               <li className="flex items-center space-x-3 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4 text-primary" />
@@ -97,8 +97,8 @@ const Footer = () => {
 
           {/* Admin Login Link */}
           <p className="mt-2">
-            <Link 
-              to="/admin-login" 
+            <Link
+              to="/admin-login"
               className="text-xs text-muted-foreground hover:text-primary transition-colors"
             >
               Admin Login

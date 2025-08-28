@@ -7,7 +7,7 @@ import DateComponent from "./DateComponent";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import DeleteStudentButton from "./DeleteStudent";
 import Pagination from "./Pagination";
-import { formatDate } from "../../Utils/formatDate";
+import { formatDate } from "../Utils/formatDate";
 
 const LatestStudents = () => {
     const dispatch = useDispatch();

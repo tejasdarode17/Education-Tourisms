@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchAllStudents, setPage, setSelectedStudent } from "@/Redux/studentSlice"
 import DeleteStudentButton from "./DeleteStudent"
 import { useNavigate } from "react-router-dom"
-import { formatDate } from "../../Utils/formatDate"
+import { formatDate } from "../Utils/formatDate"
 import Pagination from "./Pagination"
 import { useEffect } from "react"
 

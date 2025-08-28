@@ -26,13 +26,13 @@ const ContactPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
     alert('Message sent successfully! We will get back to you soon.');
     setIsSubmitting(false);
-    
+
     // Reset form
     setFormData({
       name: '',
@@ -249,9 +249,9 @@ const ContactPage = () => {
                       />
                     </div>
 
-                    <Button 
-                      type="submit" 
-                      className="w-full py-3 text-lg" 
+                    <Button
+                      type="submit"
+                      className="w-full py-3 text-lg"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (
@@ -320,8 +320,8 @@ const ContactPage = () => {
                     For urgent matters or emergencies during rides, contact us immediately:
                   </p>
                   <div className="space-y-2">
-                    <p className="text-primary font-semibold">📞 Emergency Hotline: +91 9876543210</p>
-                    <p className="text-primary font-semibold">📧 Emergency Email: emergency@educationtourisms.com</p>
+                    <p className="text-primary font-semibold">📞 Emergency Hotline: +91 7414977323</p>
+                    <p className="text-primary font-semibold">📧 Emergency Email: educationtourisms@gmail.com</p>
                   </div>
                 </CardContent>
               </Card>
