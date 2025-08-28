@@ -28,9 +28,7 @@ export async function createStudentEntry(req, res) {
             phone: phNumber,
             schoolName: school,
             pickupLocation: pickupLocation,
-            pickupDates: [
-                { date: new Date(date), status: "scheduled" }
-            ],
+            pickupDate: date,
             coachings: coachings
         })
 

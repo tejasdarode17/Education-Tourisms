@@ -8,21 +8,31 @@ const About = () => {
         {
             icon: Heart,
             title: 'Our Mission',
-            description: 'To eliminate transportation barriers and ensure every student can access quality coaching and educational resources, regardless of their financial situation.',
+            description: [
+                'To eliminate transportation barriers and ensure every student can access quality coaching and educational resources, regardless of their financial situation.'
+            ],
             color: 'text-red-600',
             bgColor: 'bg-red-100 dark:bg-red-900/20',
         },
         {
             icon: Users,
             title: 'Our Vision',
-            description: 'Creating a world where distance and financial constraints never limit a student\'s educational aspirations and dreams.',
+            description: [
+                'To become India’s most trusted education tourism platform, bridging the gap between students, parents, and quality coaching institutes — making the journey of finding the right institute accessible, transparent, and stress-free.'
+            ],
             color: 'text-blue-600',
             bgColor: 'bg-blue-100 dark:bg-blue-900/20',
         },
         {
             icon: Shield,
             title: 'Our Values',
-            description: 'Safety, reliability, inclusivity, and transparency drive every decision we make in serving our student community.',
+            description: [
+                'Students First – Your future is our priority.',
+                'Free & Accessible – Travel support for every student.',
+                'Trust & Honesty – Genuine and unbiased guidance.',
+                'Growth Oriented – Helping you achieve your dreams.',
+                'Supportive – Like a mentor in your journey.',
+            ],
             color: 'text-green-600',
             bgColor: 'bg-green-100 dark:bg-green-900/20',
         },
@@ -40,24 +50,19 @@ const About = () => {
             name: 'Mr x',
             role: 'Founder & CEO',
             description: 'Former IIT graduate passionate about making education accessible to all students.',
-            // image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=300',
             image: 'https://cdn-icons-png.flaticon.com/512/149/149071.png'
         },
         {
             name: 'Mr y',
             role: 'Head of Operations',
             description: 'Expert in logistics and operations with 10+ years of experience in transportation.',
-            // image: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=300',
             image: 'https://cdn-icons-png.flaticon.com/512/149/149071.png'
-
         },
         {
             name: 'Mr z',
             role: 'Technology Lead',
             description: 'Tech enthusiast building scalable solutions for student transportation management.',
-            // image: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=300',
             image: 'https://cdn-icons-png.flaticon.com/512/149/149071.png'
-
         },
     ];
 
@@ -119,7 +124,11 @@ const About = () => {
                                         <CardTitle className="text-xl">{value.title}</CardTitle>
                                     </CardHeader>
                                     <CardContent>
-                                        <p className="text-muted-foreground leading-relaxed">{value.description}</p>
+                                        {value.description.map((line, i) => (
+                                            <p key={i} className="text-muted-foreground leading-relaxed mb-2">
+                                                {line}
+                                            </p>
+                                        ))}
                                     </CardContent>
                                 </Card>
                             </motion.div>

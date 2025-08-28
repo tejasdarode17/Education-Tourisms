@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Outlet, createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import Navbar from './Main Components/Navbar/Navbar';
 import Home from './Main Components/Home/Home';
@@ -8,10 +8,15 @@ import CoachingCentersPage from './Main Components/Coaching Centers/CoachingCent
 import About from './Main Components/About/About';
 import Contact from './Main Components/Contact Us/Contact';
 import AdminLogin from './Admin/AdminLogin';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Dashboard from './Admin/Dashboard';
-import { useCheckAuth } from './Custom Hooks/useCheckAuth';
 import AdminSidebar from './Admin/AdminSidebar';
+import Students from './Admin/Students';
+import LatestStudents from './Admin/LatestStudents';
+import SelectedStudent from './Admin/SelectedStudent';
+import { fetchAllStudents } from './Redux/studentSlice';
+import { fetchTodaysEnrollments } from './Redux/LatestStudents';
+import { checkAdminAuth } from './Redux/authSlice';
 
 function MainLayout() {
   return (
@@ -25,33 +30,32 @@ function MainLayout() {
 
 function AdminAuthLayout() {
   const { isAuthenticated } = useSelector((store) => store.auth);
-
-  // if (isAuthenticated) {
-  //   return <Navigate to="/admin" replace />;
-  // }
-
+  if (isAuthenticated) return <Navigate to="/admin" replace />;
   return <AdminLogin />;
 }
 
 
 function AdminHomeLayout() {
-  const { isAuthenticated } = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
+  const { isAuthenticated, loading } = useSelector((state) => state.auth);
 
-  const { loading } = useCheckAuth();
+  useEffect(() => {
+    dispatch(checkAdminAuth());
+  }, [dispatch]);
 
-  if (loading) {
-    return <h1>Loading....</h1>
-  }
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(fetchAllStudents({ page: 1 }));
+      dispatch(fetchTodaysEnrollments({ page: 1 }));
+    }
+  }, [dispatch, isAuthenticated]);
 
-  // if (!isAuthenticated) {
-  //   return <Navigate to="/admin-login" replace />;
-  // }
+  if (loading) return <h1>Loading....</h1>;
+  if (!isAuthenticated) return <Navigate to="/admin-login" replace />;
 
   return (
     <div className="flex min-h-screen w-full">
-
       <AdminSidebar />
-
       <div className="flex-1 p-4 lg:p-10 overflow-x-hidden bg-[#fff]">
         <Outlet />
       </div>
@@ -102,6 +106,18 @@ const approuter = createBrowserRouter([
       {
         index: true,
         element: <Dashboard></Dashboard>
+      },
+      {
+        path: "students",
+        element: <Students></Students>
+      },
+      {
+        path: "today",
+        element: <LatestStudents></LatestStudents>
+      },
+      {
+        path: "student/:id",
+        element: <SelectedStudent></SelectedStudent>
       },
     ]
   }

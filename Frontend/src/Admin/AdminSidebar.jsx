@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 import { Car, ChartNoAxesCombined, File, Home, LayoutDashboard, LogOut, Menu, MessageSquare, Settings, User } from "lucide-react";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { clearStudent } from "@/Redux/studentSlice";
+import { clearLatestStudents } from "@/Redux/LatestStudents";
 
 const AdminSidebar = () => {
 
@@ -51,6 +53,8 @@ const AdminSidebar = () => {
   );
 };
 
+
+
 const SideBarMenu = ({ setOpenSheet }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -58,9 +62,12 @@ const SideBarMenu = ({ setOpenSheet }) => {
 
   async function handleLogout() {
     try {
-      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user/logout`, {}, { withCredentials: true });
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/admin/logout`, {}, { withCredentials: true });
       dispatch(clearUser());
-      navigate("/seller/auth/login");
+      dispatch(clearStudent())
+      dispatch(clearLatestStudents())
+      localStorage.clear();
+      navigate("/admin-login");
     } catch (error) {
       console.log(error);
       toast.error(error?.response?.data?.message);
@@ -69,10 +76,9 @@ const SideBarMenu = ({ setOpenSheet }) => {
 
   const items = [
     { id: 1, name: "Dashboard", icon: <Home />, path: "/admin" },
-    { id: 2, name: "Students", icon: <User />, path: "/admin/products" },
-    { id: 3, name: "Pickups", icon: <Car />, path: "/admin/orders" },
-    { id: 4, name: "Messages", icon: <MessageSquare />, path: "/admin/settings" },
-    { id: 4, name: "Reports", icon: <File />, path: "/admin/settings" },
+    { id: 2, name: "Students", icon: <User />, path: "/admin/students" },
+    { id: 3, name: "Today's Enrollment", icon: <Car />, path: "/admin/today" },
+    { id: 4, name: "Messages", icon: <MessageSquare />, path: "/admin/chat" },
   ];
 
   return (
@@ -85,7 +91,7 @@ const SideBarMenu = ({ setOpenSheet }) => {
             if (setOpenSheet) setOpenSheet(false);
           }}
           variant="ghost"
-          className={`flex items-center gap-3 w-full pointer justify-start px-4 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname === item.path ? "bg-blue-700 text-white hover:bg-blue-800" : "hover:bg-gray-100"}`}>
+          className={`flex items-center gap-3 w-full pointer justify-start px-4 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname === item.path ? "bg-blue-700 text-white hover:bg-blue-800 hover:text-white" : "hover:bg-blue-700 hover:text-white"}`}>
           {item.icon}
           {item.name}
         </Button>

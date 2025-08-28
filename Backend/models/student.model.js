@@ -13,6 +13,7 @@ const studentSchema = new mongoose.Schema({
         unique: true,
         match: [/^(\+91|0)?[6-9][0-9]{9}$/, 'Invalid Indian phone number'],
     },
+    
     email: {
         type: String,
         required: true,
@@ -35,16 +36,21 @@ const studentSchema = new mongoose.Schema({
         default: []
     },
 
-    pickupDates: [
-        {
-            date: { type: Date, required: true },
-            status: {
-                type: String,
-                enum: ["scheduled", "confirmed", "rescheduled", "cancelled"],
-                default: "scheduled"
-            }
-        }
-    ]
+    pickupDate: {
+        type: Date,
+        required: true
+    },
+
+    called: {
+        type: Boolean,
+        default: false
+    },
+
+    notes: {
+        type: String,
+        default: ""
+    }
+
 },
     { timestamps: true }
 )
