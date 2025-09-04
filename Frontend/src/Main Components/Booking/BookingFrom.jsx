@@ -31,7 +31,7 @@ export const BookingForm = () => {
         e.preventDefault();
         try {
             setIsSubmitting(true);
-            const response = await axios.post("http://localhost:3000/api/v1/student/form", formData, {
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/student/form`, formData, {
                 withCredentials: true
             });
 
