@@ -11,7 +11,8 @@ const app = express()
 const PORT = process.env.PORT
 
 const allowedOrigins = [
-    process.env.FRONTEND_URL
+    process.env.FRONTEND_URL,
+    process.env.FRONTEND_URL2
 ];
 
 const corsOptions = {
