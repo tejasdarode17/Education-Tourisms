@@ -108,6 +108,7 @@ export const BookingForm = () => {
                                     placeholder="Email Address"
                                     value={formData.email}
                                     onChange={(e) => { setFormData((prev) => ({ ...prev, email: e.target.value })) }}
+                                    required
                                     className="w-full pl-10 pr-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-background"
                                 />
                             </div>
@@ -173,13 +174,19 @@ export const BookingForm = () => {
 
                         <Button
                             type="submit"
-                            className="w-full py-3 text-lg cursor-pointer"
+                            className="w-full py-3 text-lg cursor-pointer flex items-center justify-center"
                             disabled={isSubmitting}
                         >
-                            {
-                                isSubmitting ? <Loader2>Booking</Loader2> : "Book free Ride"
-                            }
+                            {isSubmitting ? (
+                                <>
+                                    <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                                    Booking...
+                                </>
+                            ) : (
+                                "Book Free Ride"
+                            )}
                         </Button>
+
 
                         <p className="text-xs text-muted-foreground text-center">
                             By booking, you agree to our terms of service and privacy policy.

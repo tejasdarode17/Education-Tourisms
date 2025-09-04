@@ -32,12 +32,12 @@ const Dashboard = () => {
                         <p className="text-2xl font-bold"> {todaysTotal}</p>
                     </div>
                 </Link>
-                <Link>
+                {/* <Link>
                     <div className="p-4 bg-white shadow rounded-xl">
                         <h2 className="text-gray-500 text-sm">Uncalled Students</h2>
                         <p className="text-2xl font-bold">{uncalledStudents.length}</p>
                     </div>
-                </Link>
+                </Link> */}
             </div>
 
         </div>

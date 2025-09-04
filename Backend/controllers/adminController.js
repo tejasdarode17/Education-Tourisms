@@ -188,7 +188,6 @@ export async function getTodaysEnrollments(req, res) {
     }
 }
 
-
 export async function deleteStudent(req, res) {
     try {
         const adminId = req.admin?.id;
