@@ -21,7 +21,7 @@ const AdminLogin = () => {
         e.preventDefault()
 
         try {
-            const response = await axios.post("http://localhost:3000/api/v1/login-admin", formData, {
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}login-admin`, formData, {
                 withCredentials: true
             });
 
