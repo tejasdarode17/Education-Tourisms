@@ -31,8 +31,7 @@ const corsOptions = {
 
 //middleware
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
-
+// app.options("*", cors(corsOptions));   this line is giving me an error 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
