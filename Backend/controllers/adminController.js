@@ -2,7 +2,8 @@ import Admin from "../models/admin.model.js";
 import bcrypt from "bcrypt"
 import Student from "../models/student.model.js";
 import { generateAccessToken } from "../Utils/genrateToken.js";
-
+import dotenv from "dotenv"
+dotenv.config()
 
 export async function loginAdmin(req, res) {
 

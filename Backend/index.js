@@ -4,12 +4,14 @@ import cookieParser from "cookie-parser"
 import dbConnect from "./config/dbConnect.js"
 import studentRoute from "./routes/studentRoute.js"
 import adminRoute from './routes/adminRoute.js'
+import dotenv from "dotenv"
+dotenv.config()
 
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT
 
 const allowedOrigins = [
-    "http://localhost:5173",
+    process.env.FRONTEND_URL
 ];
 
 const corsOptions = {
@@ -37,6 +39,16 @@ app.use(cookieParser());
 
 app.use("/api/v1", studentRoute)
 app.use("/api/v1", adminRoute)
+
+
+//safty error handler
+app.use((err, req, res, next) => {
+    res.status(500).json({
+        success: false,
+        message: err.message || "Something went wrong"
+    });
+});
+
 
 app.listen(PORT, () => {
     dbConnect()
