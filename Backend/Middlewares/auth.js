@@ -30,8 +30,9 @@ export async function verifyAdmin(req, res, next) {
 export async function checkAuth(req, res) {
 
     try {
+        
         const user = req.admin.id
-        console.log("Called");
+
         if (!user) {
             return res.status(400).json({
                 success: false,

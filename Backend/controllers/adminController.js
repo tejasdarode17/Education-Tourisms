@@ -36,13 +36,15 @@ export async function loginAdmin(req, res) {
 
         const token = generateAccessToken({ id: admin._id })
 
-        res.cookie("accessToken", token, {
+        const cookieOptions = {
             httpOnly: true,
-            secure: true,
-            sameSite: "Lax",
-            maxAge: 24 * 60 * 60 * 1000, // 1 day expiry
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+            maxAge: 24 * 60 * 60 * 1000,
             path: "/"
-        })
+        };
+
+        res.cookie("accessToken", token, cookieOptions);
 
         return res.json({
             success: true,
@@ -63,7 +65,7 @@ export async function loginAdmin(req, res) {
 }
 
 export function logoutAdmin(req, res) {
-    res.clearCookie("adminToken", {
+    res.clearCookie("accessToken", {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
