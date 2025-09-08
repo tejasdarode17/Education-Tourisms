@@ -51,11 +51,10 @@ app.use("/api/v1", adminRoute);
 const frontendPath = path.join(__dirname, "../Frontend/dist");
 app.use(express.static(frontendPath, { index: false }));
 
-// SPA fallback
-// app.get("*", (req, res) => {
-//     res.sendFile(path.join(frontendPath, "index.html"));
-// });
-
+// SPA fallback 
+app.get(/.*/, (req, res) => {
+    res.sendFile(path.join(frontendPath, "index.html"));
+});
 
 //error handler
 app.use((err, req, res, next) => {
