@@ -19,7 +19,7 @@ const DeleteStudentButton = ({ studentId }) => {
 
     const handleDelete = async () => {
         try {
-            const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}admin/delete/${studentId}`, {
+            const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/admin/delete/${studentId}`, {
                 withCredentials: true,
             })
             dispatch(deleteStudent(studentId))

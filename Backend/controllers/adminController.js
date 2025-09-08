@@ -194,7 +194,7 @@ export async function getTodaysEnrollments(req, res) {
 export async function deleteStudent(req, res) {
     try {
         const adminId = req.admin?.id;
-        const { id } = req.params; // ✅ Correct way to get ID
+        const { id } = req.params;
 
         if (!adminId) {
             return res.status(401).json({

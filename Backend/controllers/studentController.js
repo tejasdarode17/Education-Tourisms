@@ -1,6 +1,42 @@
+import axios from "axios";
 import transporter from "../config/nodemailer.js";
 import Student from "../models/student.model.js"
+import dotenv from "dotenv"
+dotenv.config()
 
+async function sendWhatsAppMessage(to, fullName) {
+    try {
+        const response = await axios.post(
+            `https://graph.facebook.com/v22.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`,
+            {
+                messaging_product: "whatsapp",
+                to,
+                type: "template",
+                template: {
+                    name: "student_registration",
+                    language: { code: "en_US" },
+                    components: [
+                        {
+                            type: "body",
+                            parameters: [
+                                { type: "text", text: fullName }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                headers: {
+                    "Authorization": `Bearer ${process.env.WHATSAPP_ACCESS_TOKEN}`,
+                    "Content-Type": "application/json"
+                }
+            }
+        );
+
+    } catch (err) {
+        console.error("WhatsApp message failed:", err.response?.data || err.message);
+    }
+}
 
 export async function createStudentEntry(req, res) {
     try {
@@ -71,6 +107,8 @@ export async function createStudentEntry(req, res) {
             console.error("Email sending failed:", mailError.message);
         });
 
+        await sendWhatsAppMessage(`91${phNumber.replace(/^(\+91|0)/, "")}`, fullName);
+
     } catch (error) {
         console.error("Server Error:", error.message);
         return res.status(500).json({
@@ -79,8 +117,6 @@ export async function createStudentEntry(req, res) {
         });
     }
 }
-
-
 
 
 
