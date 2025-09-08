@@ -47,17 +47,15 @@ app.use("/api/v1", studentRoute);
 app.use("/api/v1", adminRoute);
 
 
-
-
 // Vite React frontend
 const frontendPath = path.join(__dirname, "../Frontend/dist");
 app.use(express.static(frontendPath, { index: false }));
 
-
 // SPA fallback
-app.get("*", (req, res) => {
-    res.sendFile(path.join(frontendPath, "index.html"));
-});
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(frontendPath, "index.html"));
+// });
+
 
 //error handler
 app.use((err, req, res, next) => {
