@@ -5,6 +5,8 @@ import dbConnect from "./config/dbConnect.js"
 import studentRoute from "./routes/studentRoute.js"
 import adminRoute from './routes/adminRoute.js'
 import dotenv from "dotenv"
+import path from 'path'
+
 dotenv.config()
 
 const app = express()

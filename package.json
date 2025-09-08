@@ -1,0 +1,23 @@
+{
+  "name": "education-tourisms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install:all": "npm --prefix Backend install && npm --prefix Frontend install",
+    "build": "npm --prefix Frontend run build",
+    "start": "node Backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tejasdarode17/Education-Tourisms.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/tejasdarode17/Education-Tourisms/issues"
+  },
+  "homepage": "https://github.com/tejasdarode17/Education-Tourisms#readme"
+}
