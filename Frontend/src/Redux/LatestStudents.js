@@ -6,7 +6,8 @@ export const fetchTodaysEnrollments = createAsyncThunk(
     "latestStudents/fetchToday",
     async ({ page = 1, limit = 20 }, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/latest/enrollment`,
+            const response = await axios.get(`/api/v1/admin/latest/enrollment`,
+            // const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/latest/enrollment`,
                 {
                     params: { page, limit },
                     withCredentials: true,

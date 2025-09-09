@@ -6,7 +6,8 @@ export const fetchAllStudents = createAsyncThunk(
     "students/fetchAll",
     async ({ page = 1, limit = 20 }, { rejectWithValue }) => {
         try {
-            const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/all`,
+            // const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/all`,
+            const res = await axios.get(`/api/v1/admin/all`,
                 {
                     params: { page, limit },
                     withCredentials: true,

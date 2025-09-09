@@ -21,11 +21,12 @@ const AdminLogin = () => {
         e.preventDefault()
 
         try {
-            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login-admin`, formData, {
+            // const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/login-admin`, formData, {
+            const response = await axios.post(`/api/v1/login-admin`, formData, {
                 withCredentials: true
             });
 
-            const data = response.data
+            const data = response.data  
             console.log(data);
             toast.success(data?.message)
             dispatch(setUser(data?.admin))

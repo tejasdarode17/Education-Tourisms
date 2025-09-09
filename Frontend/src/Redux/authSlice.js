@@ -6,7 +6,8 @@ export const checkAdminAuth = createAsyncThunk(
     "auth/checkAdminAuth",
     async (_, { rejectWithValue }) => {
         try {
-            const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/check-auth`, {
+            // const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/check-auth`, {
+            const res = await axios.get(`/api/v1/admin/check-auth`, {
                 withCredentials: true,
             });
 
